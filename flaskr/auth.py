@@ -1,13 +1,16 @@
+import functools
 from flask import Blueprint, request, jsonify
-from .db import db
+from werkzeug.security import check_password_hash,generate_password_hash
 import json
+from .db import get_db
 
 auth_bp = Blueprint('auth', __name__,url_prefix="/auth")
 
 @auth_bp.route('/signin', methods=['GET'])
 def login():
     # Access the users collection
-    users_collection = db.get_collection("users")
+    db = get_db()
+    users_collection = db['users']
 
     # Authentication logic...
     # Example: Verify username and password
@@ -24,6 +27,7 @@ def login():
     else:
         # Login failed
         return jsonify({'message': 'Invalid username or password'}), 401
+    
 
 @auth_bp.route('/signup', methods=['POST'])
 def register():
@@ -36,3 +40,4 @@ def register():
 def logout():
     # Logout logic...
     return jsonify({'message': 'Logout successful'})
+
