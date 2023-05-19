@@ -38,5 +38,5 @@ pip install -r requirements.txt
 ```
 flask --app flaskr run --debug --host=0.0.0.0
 ```
--- --debug for to enable the debug option
--- --host for to service the webpage to the public like 0.0.0.0
+- --debug for to enable the debug option
+- --host for to service the webpage to the public like 0.0.0.0
