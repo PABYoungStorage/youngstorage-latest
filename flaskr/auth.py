@@ -28,23 +28,7 @@ def login():
 @auth_bp.route('/signup', methods=['POST'])
 def register():
     # Access the users collection
-    users_collection = db.db['users']
-
-    # Registration logic...
-    # Example: Create a new user
-    data = request.get_json()
-    username = data.get('username')
-    password = data.get('password')
-
-    # Check if the username already exists
-    existing_user = users_collection.find_one({'username': username})
-    if existing_user:
-        return jsonify({'message': 'Username already exists'}), 409
-
-    # Insert the new user
-    new_user = {'username': username, 'password': password}
-    users_collection.insert_one(new_user)
-
+    
     # Registration successful
     return jsonify({'message': 'Registration successful'})
 
